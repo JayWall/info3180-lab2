@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<style type="text/css">
+    #picture{
+    float:left;
+}
+
+#info{
+    float:right;
+}
+
+h1{
+    font-family: sans-serif;
+    font-weight: bold;
+    border:1px solid black;
+}
+div{
+    border:1px solid black;
+}
+
+
+
+</style>
+    
+<h1>
+    Profile
+</h1>
+
+<body>
+    <div id="picture">
+        <img src="/app/static/Macbook.jpg">
+    </div>
+    <div id="info">
+        <div>
+            Apple Computer
+        </div>
+        <div>
+            Today's date is {{ timeinfo() }}
+        </div>
+        <div>
+            <p>Username: MacBook</p>
+            <p>ID Number: 123456789 </p>
+            <p>Age: 22</p>
+            <p>Gender: Female</p>
+        </div>
+        <div>
+            I am a long lasting machine
+        </div>
+    </div>
+ </body>   
+</html>

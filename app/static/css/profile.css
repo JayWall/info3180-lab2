@@ -1,0 +1,12 @@
+#picture{
+    float:left;
+}
+
+#info{
+    float:right;
+}
+
+head{
+    font-family: sans-serif;
+    font-weight: bold;
+}
