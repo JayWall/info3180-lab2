@@ -1,6 +1,7 @@
     
 #picture{
     float:left;
+    height: 240px;
 }
 
 #info{
@@ -9,33 +10,28 @@
     width: 400px;
     font-family: sans-serif;
     margin:0;
-    border:2px solid #e9e9e9;
 }
 
-#apple{
-    padding: 10px;
-    margin:0;
-    background-color: #ededed;
-    font-family: sans-serif;
+#name{
+    font-size: 150%;
     font-weight: bold;
-}
-
-#inside{
-    padding:10px;
     
 }
 
 
+#inside{
+    padding: 10px;
+    margin:20px;
+    background-color: #ededed;
+    font-family: sans-serif;
+    border:1px solid #c1c1c1;
+    height: 250px;
+    width: 630px;
+}
+
 #date{
     font-family: sans-serif;    
-    border-bottom:1px solid #e9e9e9;
 }
-
-#name{
-    border-bottom:1px solid blue;
-
-}
-
 
 h1{
     font-family: sans-serif;
