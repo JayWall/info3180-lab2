@@ -6,11 +6,11 @@ This file creates your application.
 """
 
 from app import app, db, login_manager
-from flask import render_template, request, redirect, url_for, flash, jsonify
+from flask import render_template, request, redirect, url_for, flash, jsonify, session, abort
 from flask_login import login_user, logout_user, current_user, login_required
 from forms import LoginForm
 from werkzeug.utils import secure_filename
-from models import UserProfileNew, UserProfile
+from models import UserProfile, timeinfo
 import os
 import datetime
 
@@ -75,30 +75,30 @@ def newfile():
     filename = secure_filename(file.filename)
     file.save(os.path.join(thefilefolder, filename))
     
-    NewProfile = UserProfileNew(request.form['fName'], request.form['lName'],
+    NewProfile = UserProfile(request.form['fName'], request.form['lName'],
                                 request.form['userName'],request.form['age'], 
                                 request.form['bio'], filename, request.form['gender'])
                                 
     db.session.add(NewProfile)
     db.session.commit()
     
-    User = UserProfileNew.query.filter_by(username=request.form['userName']).first
+    User = UserProfile.query.filter_by(username=request.form['userName']).first()
     
     flash('Profile saved :)')
-    return redirect(url_for('profile',userid=User.id))
+    return redirect(url_for('idprofile',userid=User.id))
 
 @app.route('/profile', methods=["GET"])
 def profile():
-    return render_template('signup.html')
+    return render_template('userform.html')
     
 @app.route('/profiles', methods=["GET"])
 def profiles():
-    profiles = UserProfileNew.query.filter_by().all()
+    profiles = UserProfile.query.filter_by().all()
     return render_template('profiles.html', profiles=profiles)
     
 @app.route('/profile/<userid>', methods=['GET'])
 def idprofile(userid):
-    User = UserProfileNew.query.filter_by(id=userid).first
+    User = UserProfile.query.filter_by(id=userid).first()
     return render_template('profile.html', profile=User)
 
 
@@ -130,7 +130,7 @@ def idprofile(userid):
 @app.route('/profiles', methods=['POST'])
 def profilesJSON():
     profile_list = []    
-    profiles = UserProfileNew.query.filter_by().all()
+    profiles = UserProfile.query.filter_by().all()
 
     for profile in profiles:
         profile_list +=[{'username':profile.username, 'userID':profile.id}]
@@ -138,7 +138,7 @@ def profilesJSON():
 
 @app.route('/profile/<userid>', methods=['POST'])
 def profileIDJSON(userid):
-    profile = UserProfileNew.query.filter_by(id=userid).first()
+    profile = UserProfile.query.filter_by(id=userid).first()
     if profile is not None:
         profile_list ={'userid':profile.id, 'username':profile.username, 
                         'image':profile.image, 'gender':profile.gender, 
@@ -192,7 +192,7 @@ def add_header(response):
     and also to cache the rendered page for 10 minutes.
     """
     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
-    response.headers['Cache-Control'] = 'public, max-age=600'
+    response.headers['Cache-Control'] = 'public, max-age=0'
     return response
 
 

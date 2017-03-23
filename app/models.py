@@ -8,11 +8,11 @@ def timeinfo():
 # Not really needed for this project but kept
 # just for feature completeness
 class UserProfile(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(80))
-    last_name = db.Column(db.String(80))
-    username = db.Column(db.String(80), unique=True)
-    password = db.Column(db.String(255))
+    # id = db.Column(db.Integer, primary_key=True)
+    # first_name = db.Column(db.String(80))
+    # last_name = db.Column(db.String(80))
+    # username = db.Column(db.String(80), unique=True)
+    # password = db.Column(db.String(255))
     
     def is_authenticated(self):
         return True

@@ -6,7 +6,6 @@
 {% block main %}
         <h1>New User Form</h1>
         
-        {% block main %}
         <form method="POST" action="{{ url_for('profile')}}" method="post" enctype="multipart/form-data">
             <p class="medium"><b>First Name <span>(Required)</span></b></p>
             <p class="small">Please enter your first name</p>
@@ -41,30 +40,3 @@
         </form>
         
 {% endblock %} 
-
-<!--
-{% extends "base.html" %}
-
-{% block main %}
-<h1 class="page-header">Create a New Profile</h1>
-<form method = "GET" action = "{{ url_for('profile') }}">
-    <label for = "firstname">First Name:</label>
-    <input type = "text" class = "form-control" placeholder = "First Name" id = "firstname">
-    
-    <label for = "lastname">Last Name:</label>
-    <input type = "text" class = "form-control" placeholder = "Last Name" id = "lastname">
-    
-    <label for = "Age">Age:</label>
-    <input type = "number" class = "form-control" placeholder = "21" id = "age">
-    
-    <label for = "biography">Biography:</label>
-    <textarea rows = "4" cols = "50" class = "form-control" placeholder = "Tell us about yourself" id = "biography"></textarea>
-    
-    <input type = "file">
-    
-    <input type = "submit" id = "SubBtn" class = "btn btn-primary">
-</form>
-
-{% endblock %}
-
--->
